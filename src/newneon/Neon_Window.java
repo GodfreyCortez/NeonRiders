@@ -4,6 +4,7 @@ package newneon;
 import java.awt.BorderLayout;
 import javax.swing.*;
 
+
 public class Neon_Window extends JFrame //this will add all the components and give settings
 { 
     ImageIcon icon = new ImageIcon("assets/Neon Riders Logo.jpg"); //Grab the icon image

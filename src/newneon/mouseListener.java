@@ -25,7 +25,7 @@ public class mouseListener extends MouseAdapter
                                         }
                                     else if (my >= 428 && my <= 517) //these are the y boundaries of the multiplayer button
                                         {
-                                            Game_Loop.state = Game_Loop.STATE.MULTIPLAYER_SELECT; 
+                                            Game_Loop.state = Game_Loop.STATE.MULTIPLAYER_SELECTION;
                                         }
                                     else if (my >= 568 && my <= 657) //these are the y boundaries of the Instructions button
                                         {
@@ -56,7 +56,7 @@ public class mouseListener extends MouseAdapter
                                         }
                                 }
                             }
-                        else if (Game_Loop.state == Game_Loop.STATE.MULTIPLAYER_SELECT) 
+                        else if (Game_Loop.state == Game_Loop.STATE.MULTIPLAYER_SELECTION)
                             {
                                 if (mx >= 192 && mx <= 1439) //x boundaries of all the buttons
                                     {

@@ -1,11 +1,15 @@
 //Developed in 2016
+
 package newneon;
 import java.awt.*; 
 import javax.swing.*; 
 import java.io.*; 
-import java.util.*; 
+import java.util.*;
+
+
 public class Game_Loop extends JPanel 
 {
+    public enum PlayerDirections {UP, DOWN, LEFT, RIGHT};
     public static sound music = null; 
     public Font Mr_Robot = null; 
     public ImageIcon pause_icon = new ImageIcon ("assets/Pause.jpg"); 
@@ -50,11 +54,11 @@ public class Game_Loop extends JPanel
             this.addMouseListener(new mouseListener()); 
         }
     
-        public static enum STATE //enums to control what state the game is in
+        public enum STATE //enums to control what state the game is in
         {
             MENU,                   
-            GAME,                   
-            MULTIPLAYER_SELECT,
+            GAME,
+            MULTIPLAYER_SELECTION,
             INSTRUCTIONS,
             CONTINUE
         };
@@ -181,7 +185,7 @@ public class Game_Loop extends JPanel
                     if (!p_dead[0]) //if player one is not dead than we can enter the switch
                         switch (p_direction[0]) //PLAYER 1
                             {
-                                case 0: //update player's postion goin left
+                                case 0: //update player's position going left
                                         if (collision_map[playerX[0]-1][playerY[0]] || playerX[0] == 1) //check for collision with a light trail or wall
                                             {
                                                 p_dead[0] = true; //set this person to dead
@@ -348,7 +352,7 @@ public class Game_Loop extends JPanel
                     check_win();
                 }
              //If we are in any state other than game we can create some animation
-            else if (state == STATE.MENU || state == STATE.CONTINUE || state == STATE.INSTRUCTIONS || state == STATE.MULTIPLAYER_SELECT)
+            else if (state == STATE.MENU || state == STATE.CONTINUE || state == STATE.INSTRUCTIONS || state == STATE.MULTIPLAYER_SELECTION)
                 {
                         map[1][animationY] = Colour; 
                         map[3][animationY] = Colour; 
@@ -487,70 +491,70 @@ public class Game_Loop extends JPanel
                     }
                     
                     //PLAYER 3
-                    if (p_direction[2] == 0)  
+                    if (p_direction[2] == 0)
                     {
-                        if (collision_map [playerX[2]-1][playerY[2]]) 
-                        {
-                                if (rand.nextBoolean())
-                                    if (collision_map [playerX[2]][playerY[2]-1])
-                                        p_direction[2] = 3; 
-                                    else
-                                        p_direction[2] = 1; 
-                                else
-                                    if (collision_map [playerX[2]][playerY[2]+1])
-                                        p_direction[2] = 1; 
-                                    else
-                                        p_direction[2] = 3;  
-                        }
-                    }
-                    else if (p_direction[2] == 1) 
-                    {
-                        if (collision_map [playerX[2]][playerY[2]-1]) 
-                        {
-                                if (rand.nextBoolean())
-                                    if (collision_map [playerX[2]-1][playerY[2]])
-                                        p_direction[2] = 2;
-                                    else
-                                        p_direction[2] = 0; 
-                                else
-                                    if (collision_map [playerX[2]+1][playerY[2]])
-                                        p_direction[2] = 0;
-                                    else
-                                        p_direction[2] = 2;
-                        }                        
-                    }
-                    else if (p_direction[2] == 2) 
-                    {
-                        if (collision_map [playerX[2]+1][playerY[2]]) 
+                        if (collision_map [playerX[2]-1][playerY[2]])
                         {
                                 if (rand.nextBoolean())
                                     if (collision_map [playerX[2]][playerY[2]-1])
                                         p_direction[2] = 3;
                                     else
-                                        p_direction[2] = 1; 
+                                        p_direction[2] = 1;
                                 else
                                     if (collision_map [playerX[2]][playerY[2]+1])
-                                        p_direction[2] = 1;  
-                                    else                                    
-                                        p_direction[2] = 3; 
-                        }                        
+                                        p_direction[2] = 1;
+                                    else
+                                        p_direction[2] = 3;
+                        }
                     }
-                    else if (p_direction[2] == 3) 
+                    else if (p_direction[2] == 1)
                     {
-                        if (collision_map [playerX[2]][playerY[2]+1]) 
+                        if (collision_map [playerX[2]][playerY[2]-1])
                         {
                                 if (rand.nextBoolean())
-                                    if (collision_map [playerX[1]-1][playerY[2]])
-                                        p_direction[2] = 2; 
-                                    else                               
-                                        p_direction[2] = 0; 
+                                    if (collision_map [playerX[2]-1][playerY[2]])
+                                        p_direction[2] = 2;
+                                    else
+                                        p_direction[2] = 0;
                                 else
                                     if (collision_map [playerX[2]+1][playerY[2]])
                                         p_direction[2] = 0;
-                                    else                                 
+                                    else
                                         p_direction[2] = 2;
-                        }                        
-                    }                 
+                        }
+                    }
+                    else if (p_direction[2] == 2)
+                    {
+                        if (collision_map [playerX[2]+1][playerY[2]])
+                        {
+                                if (rand.nextBoolean())
+                                    if (collision_map [playerX[2]][playerY[2]-1])
+                                        p_direction[2] = 3;
+                                    else
+                                        p_direction[2] = 1;
+                                else
+                                    if (collision_map [playerX[2]][playerY[2]+1])
+                                        p_direction[2] = 1;
+                                    else
+                                        p_direction[2] = 3;
+                        }
+                    }
+                    else if (p_direction[2] == 3)
+                    {
+                        if (collision_map [playerX[2]][playerY[2]+1])
+                        {
+                                if (rand.nextBoolean())
+                                    if (collision_map [playerX[1]-1][playerY[2]])
+                                        p_direction[2] = 2;
+                                    else
+                                        p_direction[2] = 0;
+                                else
+                                    if (collision_map [playerX[2]+1][playerY[2]])
+                                        p_direction[2] = 0;
+                                    else
+                                        p_direction[2] = 2;
+                        }
+                    }
                     //PLAYER 4 AI
                     if (p_direction[3] == 0)  
                     {
@@ -621,68 +625,68 @@ public class Game_Loop extends JPanel
                     //PLAYER 3
                     if (p_direction[2] == 0)
                     {
-                        if (collision_map [playerX[2]-1][playerY[2]]) 
-                        {
-                                if (rand.nextBoolean())
-                                    if (collision_map [playerX[2]][playerY[2]-1])
-                                        p_direction[2] = 3; 
-                                    else
-                                        p_direction[2] = 1; 
-                                else
-                                    if (collision_map [playerX[2]][playerY[2]+1])
-                                        p_direction[2] = 1; 
-                                    else
-                                        p_direction[2] = 3;  
-                        }
-                    }
-                    else if (p_direction[2] == 1) 
-                    {
-                        if (collision_map [playerX[2]][playerY[2]-1]) 
-                        {
-                                if (rand.nextBoolean())
-                                    if (collision_map [playerX[2]-1][playerY[2]])
-                                        p_direction[2] = 2;
-                                    else
-                                        p_direction[2] = 0; 
-                                else
-                                    if (collision_map [playerX[2]+1][playerY[2]])
-                                        p_direction[2] = 0;
-                                    else
-                                        p_direction[2] = 2;
-                        }                        
-                    }
-                    else if (p_direction[2] == 2) 
-                    {
-                        if (collision_map [playerX[2]+1][playerY[2]]) 
+                        if (collision_map [playerX[2]-1][playerY[2]])
                         {
                                 if (rand.nextBoolean())
                                     if (collision_map [playerX[2]][playerY[2]-1])
                                         p_direction[2] = 3;
                                     else
-                                        p_direction[2] = 1; 
+                                        p_direction[2] = 1;
                                 else
                                     if (collision_map [playerX[2]][playerY[2]+1])
-                                        p_direction[2] = 1;  
-                                    else                                    
-                                        p_direction[2] = 3; 
-                        }                        
+                                        p_direction[2] = 1;
+                                    else
+                                        p_direction[2] = 3;
+                        }
                     }
-                    else if (p_direction[2] == 3) 
+                    else if (p_direction[2] == 1)
                     {
-                        if (collision_map [playerX[2]][playerY[2]+1]) 
+                        if (collision_map [playerX[2]][playerY[2]-1])
                         {
                                 if (rand.nextBoolean())
-                                    if (collision_map [playerX[1]-1][playerY[2]])
-                                        p_direction[2] = 2; 
-                                    else                               
+                                    if (collision_map [playerX[2]-1][playerY[2]])
+                                        p_direction[2] = 2;
+                                    else
                                         p_direction[2] = 0;
                                 else
                                     if (collision_map [playerX[2]+1][playerY[2]])
                                         p_direction[2] = 0;
-                                    else                                 
+                                    else
                                         p_direction[2] = 2;
-                        }                        
-                    }                 
+                        }
+                    }
+                    else if (p_direction[2] == 2)
+                    {
+                        if (collision_map [playerX[2]+1][playerY[2]])
+                        {
+                                if (rand.nextBoolean())
+                                    if (collision_map [playerX[2]][playerY[2]-1])
+                                        p_direction[2] = 3;
+                                    else
+                                        p_direction[2] = 1;
+                                else
+                                    if (collision_map [playerX[2]][playerY[2]+1])
+                                        p_direction[2] = 1;
+                                    else
+                                        p_direction[2] = 3;
+                        }
+                    }
+                    else if (p_direction[2] == 3)
+                    {
+                        if (collision_map [playerX[2]][playerY[2]+1])
+                        {
+                                if (rand.nextBoolean())
+                                    if (collision_map [playerX[1]-1][playerY[2]])
+                                        p_direction[2] = 2;
+                                    else
+                                        p_direction[2] = 0;
+                                else
+                                    if (collision_map [playerX[2]+1][playerY[2]])
+                                        p_direction[2] = 0;
+                                    else
+                                        p_direction[2] = 2;
+                        }
+                    }
                     //PLAYER 4 AI
                     if (p_direction[3] == 0)  
                     {
@@ -818,7 +822,7 @@ public class Game_Loop extends JPanel
                     break;
             }
         }
-        
+
         public static void resetgame() //sets the whole map to 0 9since we must reference it to other classes, it is static and public
         {
             //Reset all the player positions and directions
@@ -882,7 +886,7 @@ public class Game_Loop extends JPanel
                             g.drawImage(background[0].getImage(),0,0,WIDTH,HEIGHT,this); //draw image
                         else if (state == STATE.INSTRUCTIONS) //if we are in the multiplayer select state draw this
                             g.drawImage(background[1].getImage(), 0, 0,WIDTH, HEIGHT, this); //draw image
-                        else if (state == STATE.MULTIPLAYER_SELECT)
+                        else if (state == STATE.MULTIPLAYER_SELECTION)
                             g.drawImage(background[2].getImage(), 0, 0, WIDTH, HEIGHT, this);
                         else if (state == STATE.CONTINUE) //continue state when everybody has died
                             { 
