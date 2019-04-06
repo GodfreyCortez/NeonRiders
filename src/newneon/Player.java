@@ -45,4 +45,6 @@ public class Player
     {
         return dead;
     }
+
+    public void setDead(boolean status) { dead = status; }
 }

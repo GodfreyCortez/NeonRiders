@@ -41,7 +41,7 @@ public class Game_Loop extends JPanel {
     public static int[] p_score = new int[4];
     public static STATE state = STATE.MENU;
 
-    public Game_Loop() //constructor that will add all our compoenents
+    public Game_Loop() //constructor that will add all our components
     {
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setBackground(Color.LIGHT_GRAY);
