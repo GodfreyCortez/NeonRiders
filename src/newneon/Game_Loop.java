@@ -219,7 +219,7 @@ public class Game_Loop extends JPanel {
                         collision_map[playerX[0]][playerY[0]] = true; //whatever square the player has traveled on is set to true
                         break;
                 }
-            //PlAYER 3 AI/Player
+            //PlAYER 2 AI/Player
             if (!p_dead[1])
                 switch (p_direction[1]) {
                     case 0:

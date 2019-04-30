@@ -47,4 +47,9 @@ public class Player
     }
 
     public void setDead(boolean status) { dead = status; }
+
+    //depending on the direction of the player in its current status, we may 
+    public void incrementPosition() {
+
+    }
 }
