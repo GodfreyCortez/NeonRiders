@@ -1,9 +1,5 @@
 package newneon;
 
-import static newneon.Game_Loop.*;
-import newneon.directions;
-import newneon.directions.*;
-import newneon.Player;
 public class Game_Data
 {
     //This class holds the data for each specific instance of a game
