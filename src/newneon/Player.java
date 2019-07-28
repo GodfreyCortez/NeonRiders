@@ -1,7 +1,7 @@
 package newneon;
 import java.awt.Point;
-import newneon.directions;
-import newneon.directions.*;
+import newneon.constants.directions;
+
 public class Player
 {
     //This class will hold information about the player

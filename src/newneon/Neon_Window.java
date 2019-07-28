@@ -7,9 +7,8 @@ import javax.swing.*;
 
 public class Neon_Window extends JFrame //this will add all the components and give settings
 { 
-    ImageIcon icon = new ImageIcon("assets/Neon Riders Logo.jpg"); //Grab the icon image
-    public Neon_Window() 
-    {
+    private ImageIcon icon = new ImageIcon("assets/Neon Riders Logo.jpg"); //Grab the icon image
+    public Neon_Window() {
         Game_Loop game = new Game_Loop();
         this.add (game, BorderLayout.CENTER);
         this.setSize(1440,900); 
@@ -23,8 +22,7 @@ public class Neon_Window extends JFrame //this will add all the components and g
         this.setVisible(true); 
         game.runGameLoop();
     }
-    public static void main(String[] args) 
-    { 
+    public static void main(String[] args) {
         Neon_Window window = new Neon_Window(); //create instance of our window
     }
 } 
