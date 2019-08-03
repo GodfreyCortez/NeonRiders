@@ -1,24 +1,27 @@
 package newneon;
 import java.awt.Point;
-import newneon.constants.directions;
+import newneon.constants.ColorScheme;
+import newneon.constants.Directions;
 
 public class Player
 {
     //This class will hold information about the player
-    private directions currentDirection;
+    private Directions currentDirection;
     private Point currentPosition;
+    private ColorScheme lightCycle;
     private boolean dead = false;
 
-    public Player(directions currentDirection, int x, int y)
+    public Player(Directions currentDirection, int x, int y)
     {
         this.currentDirection = currentDirection;
         currentPosition = new Point(x, y);
     }
 
-    public Player(directions currentDirection, Point currentPosition)
+    public Player(Directions currentDirection, Point currentPosition, ColorScheme lightCycle)
     {
         this.currentPosition = currentPosition;
         this.currentDirection = currentDirection;
+        this.lightCycle = lightCycle;
     }
 
     public Point getPosition()
@@ -26,7 +29,7 @@ public class Player
         return currentPosition;
     }
 
-    public directions getCurrentDirection()
+    public Directions getCurrentDirection()
     {
         return currentDirection;
     }
@@ -36,7 +39,7 @@ public class Player
         currentPosition.setLocation(x, y);
     }
 
-    public void setCurrentDirection(directions newDirection)
+    public void setCurrentDirection(Directions newDirection)
     {
         currentDirection = newDirection;
     }
@@ -48,7 +51,7 @@ public class Player
 
     public void setDead(boolean status) { dead = status; }
 
-    //depending on the direction of the player in its current status, we may 
+    // depending on the direction of the player in its current status, we may
     public void incrementPosition() {
 
     }

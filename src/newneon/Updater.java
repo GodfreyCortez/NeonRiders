@@ -3,9 +3,9 @@ import newneon.Game_Loop.STATE;
 
 public class Updater {
 
-    private Game_Data game = null;
+    private GameData game = null;
 
-    Updater(Game_Data gameInstance) {
+    Updater(GameData gameInstance) {
         game = gameInstance;
     }
 

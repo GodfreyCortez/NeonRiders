@@ -1,11 +1,15 @@
 //Developed in 2016
-
 package newneon;
 
 import java.awt.*;
 import javax.swing.*;
 import java.io.*;
 import java.util.*;
+
+import newneon.constants.ColorScheme;
+import newneon.constants.LightCycleColors;
+import newneon.constants.State;
+import newneon.constants.Directions;
 
 public class Game_Loop extends JPanel {
     public static sound music = null;
@@ -24,8 +28,8 @@ public class Game_Loop extends JPanel {
     byte Colour = 1;
     byte animationY = 0;
     //Since we are using a 10x10 square to draw the light, we can reduce the scale of our map by a factor of 10
-    //Therefore our imaginary map is 144 x 930 squares which will then scale up to 1440 x 900 when we actually draw, this significantly reduces our required memory
-    public static final boolean[][] collision_map = new boolean[146][92]; //This is a map of trues and falses to check whether or not there is a collision
+    //Therefore our imaginary map is 144 x 90 squares which will then scale up to 1440 x 900 when we actually draw, this significantly reduces our required memory
+    public static final boolean[][] collision_map = new boolean[146][90]; //This is a map of trues and falses to check whether or not there is a collision
     public static final byte[][] map = new byte[144][90]; //This is a 2D array for the map, which will determine the colour (The object is final, but not the contents inside)
     public static int playerX[] = {144 / 10, 144 * 9 / 10, 144 / 10, 144 * 9 / 10};
     public static int playerY[] = {90 / 5, 90 / 5, 90 * 4 / 5, 90 * 4 / 5};
@@ -39,8 +43,12 @@ public class Game_Loop extends JPanel {
     public static Color grid_lines = new Color(77, 77, 255);
     public static boolean[] p_dead = new boolean[4];
     public static int[] p_score = new int[4];
-    public static STATE state = STATE.MENU;
+    public static State state = State.MENU;
 
+
+    private GameData gameData = null;
+    private LightCycleColors cycleColors = LightCycleColors.getInstance();
+    private static final int dataScale = 10; // Since squares are 10 x 10 to draw, we can scale data to draw down by 10
     public Game_Loop() //constructor that will add all our components
     {
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -50,15 +58,6 @@ public class Game_Loop extends JPanel {
         this.setDoubleBuffered(true);
         this.addKeyListener(new keyListener());
         this.addMouseListener(new mouseListener());
-    }
-
-    public enum STATE //enums to control what state the game is in
-    {
-        MENU,
-        GAME,
-        MULTIPLAYER_SELECTION,
-        INSTRUCTIONS,
-        CONTINUE
     }
 
 
@@ -172,9 +171,41 @@ public class Game_Loop extends JPanel {
         }
     }
 
+    private GameData createNewGame() {
+        int width = getWidth() / dataScale;
+        int height = getHeight() / dataScale;
+
+        // generate the players and their directions
+        Point[] initialPosition = new Point[] {
+           new Point(width / 10, height / 5),
+           new Point(width * 9 / 10, height / 5),
+           new Point(width / 10, height * 4/5),
+           new Point(width * 9 / 10, height * 4/ 5)
+        };
+        Player[] players = new Player[] {
+            new Player(Directions.RIGHT, initialPosition[0], ColorScheme.TEAL),
+            new Player(Directions.LEFT, initialPosition[1], ColorScheme.PINK),
+            new Player(Directions.RIGHT, initialPosition[2], ColorScheme.NEON_GREEN),
+            new Player(Directions.LEFT, initialPosition[3], ColorScheme.ORANGE)
+        };
+
+        Color[][] map = new Color[width][height];
+        boolean[][] collisionMap = new boolean[width][height];
+        return new GameData(num_of_player, collisionMap, map, players);
+    }
+    public void update() {
+        if(state == State.GAME) {
+            if(gameData == null) {
+                gameData = createNewGame();
+            }
+
+            // Now that we have an instance of this specific game we can look at the players and update them accordingly
+        }
+    }
+
     public void updateGame() //update game's variable
     {
-        if (state == STATE.GAME) //check if we are in the game state/ otherwise it is not necessary to do all these updates
+        if (state == State.GAME) //check if we are in the game state/ otherwise it is not necessary to do all these updates
         {
             if (num_of_player != 4)
                 AI();
@@ -333,7 +364,7 @@ public class Game_Loop extends JPanel {
             check_win();
         }
         //If we are in any state other than game we can create some animation
-        else if (state == STATE.MENU || state == STATE.CONTINUE || state == STATE.INSTRUCTIONS || state == STATE.MULTIPLAYER_SELECTION) {
+        else if (state == State.MENU || state == State.CONTINUE || state == State.INSTRUCTIONS || state == State.MULTIPLAYER_SELECTION) {
             map[1][animationY] = Colour;
             map[3][animationY] = Colour;
             animationY++;
@@ -353,7 +384,7 @@ public class Game_Loop extends JPanel {
         if (p_dead[1] && p_dead[2] && p_dead[3]) //player 1 wins
         {
             p_score[0]++;
-            state = STATE.CONTINUE;
+            state = State.CONTINUE;
             resetmap(); //resets map colours
             try {
                 Thread.sleep(1000);
@@ -363,7 +394,7 @@ public class Game_Loop extends JPanel {
         } else if (p_dead[0] && p_dead[2] && p_dead[3]) //This is the case where player 2 wins
         {
             p_score[1]++;
-            state = STATE.CONTINUE;
+            state = State.CONTINUE;
             resetmap(); //resets map colours
             try {
                 Thread.sleep(1000);
@@ -372,7 +403,7 @@ public class Game_Loop extends JPanel {
         } else if (p_dead[0] && p_dead[1] && p_dead[3]) //This is the case where player 3 wins
         {
             p_score[2]++;
-            state = STATE.CONTINUE;
+            state = State.CONTINUE;
             resetmap(); //resets map colours
             try {
                 Thread.sleep(1000);
@@ -381,13 +412,15 @@ public class Game_Loop extends JPanel {
         } else if (p_dead[0] && p_dead[1] && p_dead[2]) //This is the case where player 4 wins
         {
             p_score[3]++;
-            state = STATE.CONTINUE;
+            state = State.CONTINUE;
             resetmap();
             try {
                 Thread.sleep(1000);
             } catch (Exception e) {
             }
         }
+
+        gameData = null;
     }
 
     public void AI() //This is the method to run AI
@@ -760,18 +793,18 @@ public class Game_Loop extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {
-        if (state != STATE.GAME) //depending on what state we are in we want to render different things
+        if (state != State.GAME) //depending on what state we are in we want to render different things
         {
             super.paintComponent(g);
             g.setColor(back_color); //set the back colour
             g.fillRect(0, 0, WIDTH, HEIGHT); //drawing the background(erase anything previously drawn
-            if (state == STATE.MENU) //if we are in the menu state
+            if (state == State.MENU) //if we are in the menu state
                 g.drawImage(background[0].getImage(), 0, 0, WIDTH, HEIGHT, this); //draw image
-            else if (state == STATE.INSTRUCTIONS) //if we are in the multiplayer select state draw this
+            else if (state == State.INSTRUCTIONS) //if we are in the multiplayer select state draw this
                 g.drawImage(background[1].getImage(), 0, 0, WIDTH, HEIGHT, this); //draw image
-            else if (state == STATE.MULTIPLAYER_SELECTION)
+            else if (state == State.MULTIPLAYER_SELECTION)
                 g.drawImage(background[2].getImage(), 0, 0, WIDTH, HEIGHT, this);
-            else if (state == STATE.CONTINUE) //continue state when everybody has died
+            else if (state == State.CONTINUE) //continue state when everybody has died
             {
                 //Output the scores of each of the players
                 g.drawImage(background[3].getImage(), 0, 0, WIDTH, HEIGHT, this); //draw the continue screen
@@ -822,7 +855,7 @@ public class Game_Loop extends JPanel {
             super.paintComponent(g);
             g.setColor(back_color);
             g.fillRect(0, 0, WIDTH, HEIGHT); //drawing the background
-            if (state == STATE.GAME) {
+            if (state == State.GAME) {
                 g.setColor(grid_lines); //set the color of the grid lines
                 for (double xrect = WIDTH / 15; xrect <= WIDTH; xrect += (WIDTH / 15)) //This will draw our vertical grid lines
                 {

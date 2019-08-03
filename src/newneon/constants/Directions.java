@@ -1,5 +1,5 @@
 package newneon.constants;
 
-public enum directions {
+public enum Directions {
     UP, DOWN, LEFT, RIGHT
 }

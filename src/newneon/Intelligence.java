@@ -1,5 +1,5 @@
 package newneon;
-import newneon.constants.directions;
+import newneon.constants.Directions;
 
 import java.util.*;
 
@@ -17,20 +17,20 @@ public class Intelligence
       return (int)(Math.random() * range) + ((min > max) ?  max : min);
     }
 
-    private directions getNewDirection (directions direction) {
-        if(direction == directions.LEFT || direction == direction.RIGHT) {
-            return rand.nextBoolean() ? directions.DOWN : directions.UP;
+    private Directions getNewDirection (Directions direction) {
+        if(direction == Directions.LEFT || direction == direction.RIGHT) {
+            return rand.nextBoolean() ? Directions.DOWN : Directions.UP;
         } else {
-            return rand.nextBoolean() ? directions.LEFT : directions.RIGHT;
+            return rand.nextBoolean() ? Directions.LEFT : Directions.RIGHT;
         }
     }
 
-    public directions chooseDirection(Player player, Game_Data gameData)
+    public Directions chooseDirection(Player player, GameData gameData)
     {
         //First have the AI choose to look one two or three spaces ahead
         final int range = randomWithRange(minLookAhead, maxLookAhead);
 
-        directions currentDirection = player.getCurrentDirection();
+        Directions currentDirection = player.getCurrentDirection();
         int row = player.getPosition().y;
         int column = player.getPosition().x;
         int indexLookAhead; //This is the largest index we'll look at

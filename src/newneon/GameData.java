@@ -1,21 +1,25 @@
 package newneon;
-
-public class Game_Data
+import java.awt.Color;
+public class GameData
 {
     //This class holds the data for each specific instance of a game
     private int numOfPlayers;
+    private int numAIPlayers;
     private boolean [][] collisionMap;
-    private int [][] map;
+    private Color [][] map;
     private Player[] playerData;
 
     //Created every time the player starts a round
-    Game_Data(int numOfPlayers, boolean[][] collisionMap, int[][] map, Player[] playerData)
+    GameData(int numOfPlayers, boolean[][] collisionMap, Color[][] map, Player[] playerData)
     {
         this.numOfPlayers = numOfPlayers;
         this.collisionMap = collisionMap;
         this.map = map;
         this.playerData = playerData;
+        numAIPlayers = 4 - numOfPlayers; // Only 4 players are supported for this game
     }
+
+    public int getNumAIPlayers() { return numAIPlayers; }
 
     public int getNumOfPlayers() {
         return numOfPlayers;
@@ -29,11 +33,11 @@ public class Game_Data
         this.collisionMap = collisionMap;
     }
 
-    public int[][] getMap(){
+    public Color[][] getMap(){
         return map;
     }
 
-    public void setMap(int[][] map) {
+    public void setMap(Color[][] map) {
         this.map = map;
     }
 
