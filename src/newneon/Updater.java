@@ -1,5 +1,5 @@
 package newneon;
-import newneon.Game_Loop.STATE;
+import newneon.constants.State;
 
 public class Updater {
 
@@ -20,8 +20,8 @@ public class Updater {
 
     }
 
-    public void updateGame(STATE gameState) {
-        if(gameState == STATE.GAME){
+    public void updateGame(State gameState) {
+        if(gameState == State.GAME){
 
         }
     }

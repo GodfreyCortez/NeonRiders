@@ -44,15 +44,31 @@ public class Player
         currentDirection = newDirection;
     }
 
-    public boolean isDead()
-    {
-        return dead;
-    }
+    public boolean isDead() { return dead; }
 
     public void setDead(boolean status) { dead = status; }
 
     // depending on the direction of the player in its current status, we may
     public void incrementPosition() {
+        if(isDead())
+            return;
+        int x = currentPosition.x;
+        int y = currentPosition.y;
+        switch(currentDirection){
+            case LEFT:
+                x--;
+                break;
+            case RIGHT:
+                x++;
+                break;
+            case UP:
+                y++;
+                break;
+            case DOWN:
+                y--;
+                break;
+        }
 
+        setCurrentPosition(x, y);
     }
 }

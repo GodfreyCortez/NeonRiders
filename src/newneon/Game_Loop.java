@@ -10,6 +10,7 @@ import newneon.constants.ColorScheme;
 import newneon.constants.LightCycleColors;
 import newneon.constants.State;
 import newneon.constants.Directions;
+import newneon.Intelligence;
 
 public class Game_Loop extends JPanel {
     public static sound music = null;
@@ -191,6 +192,11 @@ public class Game_Loop extends JPanel {
 
         Color[][] map = new Color[width][height];
         boolean[][] collisionMap = new boolean[width][height];
+
+        for(int i = 0; i < players.length; i++) {
+
+        }
+
         return new GameData(num_of_player, collisionMap, map, players);
     }
     public void update() {
@@ -198,8 +204,20 @@ public class Game_Loop extends JPanel {
             if(gameData == null) {
                 gameData = createNewGame();
             }
-
             // Now that we have an instance of this specific game we can look at the players and update them accordingly
+
+            //Step 1: Check if any players have collided with one another or out of bounds
+            Player[] playerList = gameData.getPlayerData();
+            for(Player player : playerList) {
+                int x = player.getPosition().x;
+                int y = player.getPosition().y;
+                boolean[][] collisionMap = gameData.getCollisionMap();
+                if(x < 0 || x > collisionMap[0].length - 1 || y < 0 || y > collisionMap.length - 1 || collisionMap[x][y]) {
+                    player.setDead(true);
+                } else {
+
+                }
+            }
         }
     }
 
