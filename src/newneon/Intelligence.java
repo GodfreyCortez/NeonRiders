@@ -9,7 +9,7 @@ public class Intelligence
 {
     public Intelligence(){}
     private final int minLookAhead = 1;
-    private final int maxLookAhead = 4;
+    private final int maxLookAhead = 6;
     private Random rand = new Random();
     private int randomWithRange(int min, int max)
     {
@@ -35,18 +35,23 @@ public class Intelligence
         int column = player.getPosition().x;
         int indexLookAhead; //This is the largest index we'll look at
 
+        // For a specific amount of the time we may want to keep the current direction
+        // to sometimes crash (for testing we will keep it at 50%)
+        boolean keepDirection = randomWithRange(1, 10) % 2 == 0 ? true : false;
         boolean[][] collisionMap = gameData.getCollisionMap();
+
+        if(keepDirection) return currentDirection;
 
         switch(currentDirection) {
             case UP:
-                indexLookAhead = row - range;
+                indexLookAhead = row + range;
 
                 //If travelling up, then we should ensure that the range we are looking ahead
                 //at does not go out of bounds.
                 //At the same time we can use these conditions to have the AI sometimes
                 //crash into the wall
                 if(indexLookAhead >= 0 ) {
-                    for(int i = row; i >= indexLookAhead; i--) {
+                    for(int i = row; i < indexLookAhead; i++) {
                         if(collisionMap[column][i])
                             return getNewDirection(currentDirection);
                     }
@@ -63,10 +68,10 @@ public class Intelligence
                 }
                 break;
             case DOWN:
-                indexLookAhead = row + range;
+                indexLookAhead = row - range;
 
-                if(indexLookAhead < collisionMap[column].length) {
-                    for(int i = row; i < indexLookAhead; i++)
+                if(indexLookAhead >= 0) {
+                    for(int i = row; i >= indexLookAhead; i--)
                         if(collisionMap[column][i])
                             return getNewDirection(currentDirection);
                 }

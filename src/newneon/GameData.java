@@ -1,5 +1,6 @@
 package newneon;
 import java.awt.Color;
+import java.util.Arrays;
 public class GameData
 {
     //This class holds the data for each specific instance of a game
@@ -47,5 +48,10 @@ public class GameData
     
     public void setPlayerData(Player[] playerData) {
         this.playerData = playerData;
+    }
+
+    public void resetMaps() {
+        for(Color[] color : map) Arrays.fill(color, null);
+        for(boolean[] collisions : collisionMap) Arrays.fill(collisions, false);
     }
 }

@@ -10,7 +10,7 @@ public class Player
     private Point currentPosition;
     private ColorScheme lightCycle;
     private boolean dead = false;
-
+    private int score = 0;
     public Player(Directions currentDirection, int x, int y)
     {
         this.currentDirection = currentDirection;
@@ -23,6 +23,8 @@ public class Player
         this.currentDirection = currentDirection;
         this.lightCycle = lightCycle;
     }
+
+    public ColorScheme getLightCycle() { return lightCycle; }
 
     public Point getPosition()
     {
@@ -48,6 +50,7 @@ public class Player
 
     public void setDead(boolean status) { dead = status; }
 
+    public int getScore() { return score; }
     // depending on the direction of the player in its current status, we may
     public void incrementPosition() {
         if(isDead())
@@ -71,4 +74,6 @@ public class Player
 
         setCurrentPosition(x, y);
     }
+
+    public void incrementScore () { score++; }
 }
