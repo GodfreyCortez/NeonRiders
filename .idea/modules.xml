@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/NeonRiders.iml" filepath="$PROJECT_DIR$/NeonRiders.iml" />
+      <module fileurl="file://$PROJECT_DIR$/NeonRiders/NeonRiders.iml" filepath="$PROJECT_DIR$/NeonRiders/NeonRiders.iml" />
     </modules>
   </component>
 </project>
