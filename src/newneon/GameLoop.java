@@ -4,14 +4,13 @@ package newneon;
 import java.awt.*;
 import javax.swing.*;
 import java.io.*;
-import java.util.*;
 
 import newneon.constants.ColorScheme;
 import newneon.constants.LightCycleColors;
 import newneon.constants.State;
 import newneon.constants.Directions;
 
-public class Game_Loop extends JPanel {
+public class GameLoop extends JPanel {
     public static sound music = null;
     public Font Mr_Robot = null;
     public ImageIcon pause_icon = new ImageIcon("assets/Pause.jpg");
@@ -33,15 +32,15 @@ public class Game_Loop extends JPanel {
     private LightCycleColors cycleColors = LightCycleColors.getInstance();
     private static final int dataScale = 10; // Since squares are 10 x 10 to draw, we can scale data to draw down by 10
     private Intelligence intelligence = new Intelligence();
-    public Game_Loop() //constructor that will add all our components
+    public GameLoop() //constructor that will add all our components
     {
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setBackground(Color.LIGHT_GRAY);
         this.setFocusable(true);
         this.requestFocus();
         this.setDoubleBuffered(true);
-        this.addKeyListener(new keyListener(this));
-        this.addMouseListener(new mouseListener(this));
+        this.addKeyListener(new KeyListener(this));
+        this.addMouseListener(new MouseListener(this));
     }
 
     public State getState() { return state; }

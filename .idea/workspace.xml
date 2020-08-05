@@ -23,42 +23,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f45965d4-76b4-4324-aa42-bc89ae8b261c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jl1_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/built-jar.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/.netbeans_automatic_build" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/.netbeans_update_resources" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/newneon/Game_Loop$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/newneon/Game_Loop$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/newneon/Game_Loop$STATE.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/newneon/Game_Loop.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/newneon/Neon_Window.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/newneon/keyListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/newneon/mouseListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/newneon/sound$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/newneon/sound.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/null157725558" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manifest.mf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nbproject/build-impl.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nbproject/genfiles.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nbproject/private/config.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nbproject/private/private.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nbproject/private/private.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nbproject/project.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nbproject/project.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/newneon/DirectionMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/newneon/Game_Loop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/newneon/GameLoop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/newneon/Neon_Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/newneon/NeonWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/newneon/constants/Directions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/newneon/constants/Directions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/newneon/keyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/newneon/KeyListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/newneon/mouseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/newneon/MouseListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -80,8 +64,8 @@
     <property name="settings.editor.selected.configurable" value="project.propCompiler" />
   </component>
   <component name="RunManager">
-    <configuration name="Neon_Window" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="newneon.Neon_Window" />
+    <configuration name="NeonWindow" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="newneon.NeonWindow" />
       <module name="NeonRiders" />
       <extension name="coverage">
         <pattern>
@@ -117,7 +101,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Neon_Window" />
+        <item itemvalue="Application.NeonWindow" />
       </list>
     </recent_temporary>
   </component>
@@ -133,6 +117,14 @@
       <workItem from="1596503164335" duration="573000" />
       <workItem from="1596503762671" duration="998000" />
     </task>
+    <task id="LOCAL-00001" summary="Updated build files for Intellij">
+      <created>1596505300794</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1596505300794</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,6 +141,11 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Updated intellij build files" />
+    <MESSAGE value="Updated build files for Intellij" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated build files for Intellij" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="195" width="1092" height="762" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596503987922">
@@ -187,10 +184,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="423" y="148" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1596504401590" />
-    <state x="552" y="273" key="Vcs.Push.Dialog.v2" timestamp="1596504690392">
+    <state x="552" y="273" key="Vcs.Push.Dialog.v2" timestamp="1596505307430">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="552" y="273" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1596504690392" />
+    <state x="552" y="273" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1596505307430" />
     <state x="326" y="194" key="new project wizard" timestamp="1596503858276">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

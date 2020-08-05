@@ -5,12 +5,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import newneon.constants.State;
 
-public class mouseListener extends MouseAdapter {
+public class MouseListener extends MouseAdapter {
     int mx = 0; //This will track the x coordinate of the mouse button when pressed
     int my = 0; //This will track the y coordinate of our mouse button when pressed
     public static boolean has_paused = false;
-    private Game_Loop gameLoop;
-    public mouseListener(Game_Loop gameLoop) {
+    private GameLoop gameLoop;
+    public MouseListener(GameLoop gameLoop) {
         this.gameLoop = gameLoop;
     }
     @Override

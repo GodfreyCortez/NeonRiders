@@ -5,11 +5,11 @@ import java.awt.BorderLayout;
 import javax.swing.*;
 
 
-public class Neon_Window extends JFrame //this will add all the components and give settings
+public class NeonWindow extends JFrame //this will add all the components and give settings
 { 
     private ImageIcon icon = new ImageIcon("assets/Neon Riders Logo.jpg"); //Grab the icon image
-    public Neon_Window() {
-        Game_Loop game = new Game_Loop();
+    public NeonWindow() {
+        GameLoop game = new GameLoop();
         this.add (game, BorderLayout.CENTER);
         this.setSize(1440,900); 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
@@ -23,6 +23,6 @@ public class Neon_Window extends JFrame //this will add all the components and g
         game.runGameLoop();
     }
     public static void main(String[] args) {
-        Neon_Window window = new Neon_Window(); //create instance of our window
+        NeonWindow window = new NeonWindow(); //create instance of our window
     }
 } 
