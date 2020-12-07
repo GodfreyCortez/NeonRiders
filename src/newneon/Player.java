@@ -76,4 +76,19 @@ public class Player
     }
 
     public void incrementScore () { score++; }
+
+    public void changeDirection(Directions keyDirection) {
+        switch(keyDirection) {
+            case UP:
+                if(currentDirection == Directions.DOWN) return;
+            case LEFT:
+                if(currentDirection == Directions.RIGHT) return;
+            case RIGHT:
+                if(currentDirection == Directions.LEFT) return;
+            case DOWN:
+                if(currentDirection == Directions.UP) return;
+        }
+
+        setCurrentDirection(keyDirection);
+    }
 }
